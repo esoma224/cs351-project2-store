@@ -12,10 +12,11 @@ import CreateAccountView from "./views/CreateAccountView";
 import CartView from "./views/CartView";
 import ProductDetailView from "./views/ProductDetailView";
 import AccountDashboardView from "./views/AccountDashboardView";
-import CheckoutView from "./views/CheckoutView"; // ADDED
+import CheckoutView from "./views/CheckoutView";
 import OrderConfirmationView from "./views/OrderConfirmationView";
 import OrdersView from "./views/OrdersView";
 import OrderDetailView from "./views/OrderDetailView";
+
 const App = () => {
   const [products, setProducts] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState(null);
@@ -253,11 +254,14 @@ const App = () => {
             }
           />
 
-          
-          <Route path="/checkout" element={<CheckoutView />} />
+          <Route
+            path="/checkout"
+            element={<CheckoutView onOrderPlaced={() => setCart([])} />}
+          />
+
           <Route path="/orders" element={<OrdersView />} />
           <Route path="/orders/:id" element={<OrderDetailView />} />
-          
+
           <Route
             path="/order-confirmation"
             element={<OrderConfirmationView />}

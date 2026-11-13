@@ -8,7 +8,7 @@ const emptyAddress = {
   zip: "",
 };
 
-export default function CheckoutView() {
+export default function CheckoutView({ onOrderPlaced }) {
   const navigate = useNavigate();
 
   const [shippingAddress, setShippingAddress] = useState({ ...emptyAddress });
@@ -69,6 +69,7 @@ export default function CheckoutView() {
         throw new Error(data.message || "Could not place your order.");
       }
 
+      onOrderPlaced?.();
       navigate("/order-confirmation", { state: { order: data.order } });
     } catch (err) {
       setError(err.message || "Could not place your order.");
@@ -158,7 +159,9 @@ export default function CheckoutView() {
               pattern="\d{4}"
               value={lastFourDigits}
               onChange={(event) =>
-                setLastFourDigits(event.target.value.replace(/\D/g, "").slice(0, 4))
+                setLastFourDigits(
+                  event.target.value.replace(/\D/g, "").slice(0, 4)
+                )
               }
               required
             />
