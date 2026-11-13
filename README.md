@@ -72,6 +72,5 @@ git add README.md
 git commit -m "Document build and deployment"
 git push
 ```
-
-After deployment, open your Cloud Run service URL and check that the store loads. 
+After deployment, open your Cloud Run service URL and check that the store loads.
 
