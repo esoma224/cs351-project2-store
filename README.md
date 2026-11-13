@@ -65,8 +65,13 @@ gcloud run deploy cs351-store \
   --region us-west1 \
   --allow-unauthenticated
 ```
+## Deployment Instructions
 
-Set `MONGODB_URI` and `SESSION_SECRET` as environment variables in your Cloud Run service settings. Do not put their values in this README or commit them to GitHub.
+```bash
+git add README.md
+git commit -m "Document build and deployment"
+git push
+```
 
 After deployment, open your Cloud Run service URL and check that the store loads. The products API should respond at `/api/products`.
 
