@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ product, addToCart }) => {
     const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
@@ -7,12 +8,10 @@ const ProductCard = ({ product, addToCart }) => {
 
     const handleAddToCart = () => {
         const cartItem = {
-            id: product.id,
-            name: product.name,
-            price: product.price,
+            productId: product._id,
             size: selectedSize,
             color: selectedColor,
-            quantity: quantity,
+            quantity: Number(quantity),
         };
 
         addToCart(cartItem);
@@ -23,7 +22,9 @@ const ProductCard = ({ product, addToCart }) => {
             <img src={product.image} className="card-img-top" alt={product.name} />
 
             <div className="card-body">
-                <h5 className="card-title">{product.name}</h5>
+                <h5 className="card-title">
+                    <Link to={`/product/${product._id}`}>{product.name}</Link>
+                </h5>
 
                 <p className="card-text">{product.description}</p>
 
@@ -31,7 +32,6 @@ const ProductCard = ({ product, addToCart }) => {
                     <strong>Price: ${product.price.toFixed(2)}</strong>
                 </p>
 
-                {/* Size Selection */}
                 <div className="mb-3">
                     <label htmlFor="sizeSelect" className="form-label">
                         Select Size:
@@ -51,7 +51,6 @@ const ProductCard = ({ product, addToCart }) => {
                     </select>
                 </div>
 
-                {/* Color Selection */}
                 <div className="mb-3">
                     <label htmlFor="colorSelect" className="form-label">
                         Select Color:
@@ -71,7 +70,6 @@ const ProductCard = ({ product, addToCart }) => {
                     </select>
                 </div>
 
-                {/* Quantity Input */}
                 <div className="mb-3">
                     <label htmlFor="quantityInput" className="form-label">
                         Quantity:
