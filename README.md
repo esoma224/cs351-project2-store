@@ -1,6 +1,17 @@
-# React + Vite
+# CS351 Project 2 StoreFront
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Project Overview
+A full-stack online store built by extending our Project 1 React application.
+The React frontend uses an Express REST API. MongoDB Atlas stores products,
+user accounts, and orders. Passwords are hashed, and the shopping cart is
+stored in an Express session.
+
+## Group Members
+-Esma Murshed
+-Jefferson Ly
+
+## Live Website
+[https://cs351-store-528777533929.us-west1.run.app/)
 
 Currently, two official plugins are available:
 
