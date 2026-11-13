@@ -13,15 +13,61 @@ stored in an Express session.
 ## Live Website
 [https://cs351-store-528777533929.us-west1.run.app/)
 
-Currently, two official plugins are available:
+## Technology
+- React and Vite
+- Node.js and Express
+- MongoDB Atlas
+- Express sessions
+- Google Cloud Run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Build
 
-## React Compiler
+From the project root, build the React client:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+cd client
+npm install
+npm run build
+cd ..
+```
 
-## Expanding the ESLint configuration
+The build output is saved in `client/dist`. The Express server serves these files in production.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Run Locally
+
+Open two terminals in VS Code.
+
+**Terminal 1 — start the server:**
+
+```bash
+cd server
+npm install
+node server.js
+```
+
+**Terminal 2 — start the client:**
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+Open the local URL Vite prints in Terminal 2. Keep `server/.env` private. Do not commit it to GitHub.
+
+## Deploy to Google Cloud Run
+
+From the project root, build and deploy the app as one Cloud Run service:
+
+```bash
+gcloud run deploy cs351-store \
+  --source . \
+  --region us-west1 \
+  --allow-unauthenticated
+```
+
+Set `MONGODB_URI` and `SESSION_SECRET` as environment variables in your Cloud Run service settings. Do not put their values in this README or commit them to GitHub.
+
+After deployment, open your Cloud Run service URL and check that the store loads. The products API should respond at `/api/products`.
+
+
